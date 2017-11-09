@@ -1,0 +1,3 @@
+rootProject.name = 'AndroidUI_GAE'
+
+include ':app'
