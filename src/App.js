@@ -4,62 +4,31 @@ import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 
 // Import custom RN components/containers
-import DisplayApi from './components/DisplayApi';
-import DisplayOauth from './components/DisplayOauth';
+import Header from './components/Header';
+//import HouseList from './containers/HouseList';
+import OAuth from './containers/api/OAuth';
 
 class App extends Component<{}> {
 	constructor(props){
 		super(props);
 		this.state = {
 			isLoading: true,
-			oauthIsValid: false,
-			oauthData: [],
-			apiData: [],
-			hasPlay: false
+			isLoggedIn: false,
 		}
 		
 	}
 
-	componentDidMount() {
-		return fetch('https://rest-api-implementation-183317.appspot.com/boats')
-			.then((response) => response.json())
-			.then((responseJson) => {
-				this.setState({
-					isLoading: false,
-					apiData: responseJson
-				}, () => {
-					this._setupOauthConfig();
-				});
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	}
-
-	async _setupOauthConfig(){
-		try{
-			await GoogleSignin.hasPlayServices({ autoResolve: true });
-			await GoogleSignin.configure({
-				webClientId: "505248232602-593ge8k5au4vleot8g1l11bs6k9iq5tm.apps.googleusercontent.com",
-				scopes: ["https://www.googleapis.com/plus/v1/people/me"]
-			})
-			await GoogleSignin.signIn();
-			await GoogleSignin.getAccessToken();
-			GoogleSignin.currentUserAsync().then((user) => {
-				alert('user: ' + user);
-			});
-
-
-		}catch(err){
-			alert(err);
-		}
+	logInSuccessCB(){
+		this.setState({
+			isLoggedIn: true 
+		})
 	}
 
 	render(){
 		return(
 			<View style={{flex: 1}}>
-				<DisplayOauth oauthData={this.state.oauthData} validOauth={this.state.oauthIsValid} />
-				<DisplayApi data={this.state.apiData} status={this.state.isLoading} />
+				<Header headerText={"Houses"} />
+				<OAuth isLoggedIn={this.state.isLoggedIn} logInSuccessCB={() => this.logInSuccessCB()} />
 			</View>
 		);
 	}

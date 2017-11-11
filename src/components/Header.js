@@ -1,22 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const DisplayApi = (props) => {
+const Header = (props) => {
 	const { container, content } = styles;
-	if(props.status === true){
-		return(
-			<View style={container}>
-				<Text style={content}>
-					Loading...
-				</Text>
-			</View>
-		);
-	}
-
 	return(
 		<View style={container}>
 			<Text style={content}>
-				{JSON.stringify(props.data)}
+				{props.headerText}
 			</Text>
 		</View>
 	);
@@ -24,11 +14,13 @@ const DisplayApi = (props) => {
 
 const styles = {
 	container: {
-		flex: 1
+		flex: 1,
+		maxHeight: 24,
+		borderWidth: 1,
 	},
 	content: {
-		flex: 1
+		flex: 1,
 	}
 };
 
-export default DisplayApi;
+export default Header;
