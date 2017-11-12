@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, Image, Linking } from 'react-native';
 
-const HouseDetail = (props) => {
+import { Card, CardSection, Button } from './common';
 
+const HouseDetail = (props) => {
+	
 };
 
 const styles = {

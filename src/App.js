@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 
 // Import custom RN components/containers
@@ -27,7 +26,7 @@ class App extends Component<{}> {
 		return(
 			<View style={{flex: 1}}>
 				<Header headerText={"Houses"} />
-				<Auth isLoggedIn={this.state.isLoggedIn} >
+				<Auth isLoggedIn={this.state.isLoggedIn} style={{flex: 1}} >
 					<HouseList isLoggedIn={this.state.isLoggedIn} />
 				</Auth>
 			</View>
