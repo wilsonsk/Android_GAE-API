@@ -4,9 +4,8 @@ import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 
 
 // Import custom RN components/containers
-import Header from './components/Header';
-//import HouseList from './containers/HouseList';
-import OAuth from './containers/api/OAuth';
+import { Header } from './components/common';
+import { Auth, HouseList } from './containers/api';
 
 class App extends Component<{}> {
 	constructor(props){
@@ -28,7 +27,9 @@ class App extends Component<{}> {
 		return(
 			<View style={{flex: 1}}>
 				<Header headerText={"Houses"} />
-				<OAuth isLoggedIn={this.state.isLoggedIn} logInSuccessCB={() => this.logInSuccessCB()} />
+				<Auth isLoggedIn={this.state.isLoggedIn} >
+					<HouseList isLoggedIn={this.state.isLoggedIn} />
+				</Auth>
 			</View>
 		);
 	}

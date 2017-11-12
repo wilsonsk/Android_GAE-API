@@ -1,7 +1,7 @@
 import React, { Component} from 'react';
 import { ScrollView } from 'react-native';
 
-import HouseDetail from '../components/HouseDetail';
+import HouseDetail from '../../components/HouseDetail';
 
 class HouseList extends Component<{}>{
 	constructor(props){
@@ -12,12 +12,16 @@ class HouseList extends Component<{}>{
 		};
 	}
 	componentWillMount(){
+		this._getCB();
+	}
+
+	_getCB(){
 		return fetch('https://rest-api-implementation-183317.appspot.com/boats')
-			.then((response) => response.Boats.json())
+			.then((response) => response.json())
 			.then((responseJson) => {
 				this.setState({
 					isLoading: false,
-					houses: responseJson
+					houses: responseJson.Boats
 				});
 			})
 			.catch((error) => {
@@ -25,9 +29,16 @@ class HouseList extends Component<{}>{
 			});
 	}
 
+	_postCB(){
+
+	}
+
+	_deleteCB(){
+
+	}
+
 	renderHouses(){
 		return this.state.houses.map((house) => {
-			alert(house);
 			<HouseDetail key={house.name} house={house} isLoading={this.state.isLoading} />
 		});
 	}
@@ -41,4 +52,4 @@ class HouseList extends Component<{}>{
 	}
 };
 
-export default HouseList;
+export { HouseList };
