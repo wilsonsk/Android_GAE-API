@@ -24,13 +24,19 @@ class App extends Component<{}> {
 
 	render(){
 		return(
-			<View style={{flex: 1}}>
+			<View style={styles.appContainer}>
 				<Header headerText={"Houses"} />
-				<Auth isLoggedIn={this.state.isLoggedIn} style={{flex: 1}} >
+				<Auth logInSuccessCB={() => this.logInSuccessCB()} isLoggedIn={this.state.isLoggedIn} >
 					<HouseList isLoggedIn={this.state.isLoggedIn} />
 				</Auth>
 			</View>
 		);
+	}
+}
+
+const styles = {
+	appContainer: { 
+		flex: 1,
 	}
 }
 

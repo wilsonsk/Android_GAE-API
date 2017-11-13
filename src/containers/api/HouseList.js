@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 
 import HouseDetail from '../../components/HouseDetail';
 
@@ -16,7 +16,14 @@ class HouseList extends Component<{}>{
 	}
 
 	_getCB(){
-		return fetch('https://rest-api-implementation-183317.appspot.com/boats')
+		return fetch('https://rest-api-implementation-183317.appspot.com/boats', {
+			method: 'GET',
+			dataType: 'json',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+		})
 			.then((response) => response.json())
 			.then((responseJson) => {
 				this.setState({
@@ -37,16 +44,16 @@ class HouseList extends Component<{}>{
 
 	}
 
-	renderHouses(){
+	_renderHouses(){
 		return this.state.houses.map((house) => {
-			<HouseDetail key={house.name} house={house} isLoading={this.state.isLoading} />
+			return <HouseDetail key={house.id} house={house} isLoading={this.state.isLoading} />
 		});
 	}
 
 	render(){
 		return(
 			<ScrollView>
-				{this.renderHouses()}
+				{this._renderHouses()}
 			</ScrollView>
 		);
 	}

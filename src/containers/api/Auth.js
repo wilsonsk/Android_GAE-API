@@ -30,6 +30,7 @@ class Auth extends Component <{}> {
 		if(1){
 			return(
 				<View style={styles.container} >
+					<SessionStatus loggedInStatus={String(this.state.isLoggedIn)} />
 					{this.props.children}
 				</View>
 			);
