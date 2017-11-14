@@ -17,22 +17,38 @@ class App extends Component<{}> {
 		
 	}
 
-	logInSuccessCB(){
+	loginSuccessCB(){
 		this.setState({
 			isLoggedIn: true 
 		})
 	}
 
+	renderHeader(){ 
+		switch(this.state.isLoggedIn){
+			case false: 
+				var header = 'Houses Login';
+				return(
+					<Header headerText={header}/>
+				);
+			case true:
+				var header = 'Houses List';
+				return(
+					<Header headerText={header}/>
+				);
+		}
+	}
+
 	renderAuth(){
 		if (this.state.isLoggedIn === false){
-			return <Auth logInSuccessCB={() => this.logInSuccessCB()} isLoggedIn={this.state.isLoggedIn} />
+			return <Auth loginSuccessCB={() => this.loginSuccessCB()} isLoggedIn={this.state.isLoggedIn} />
 		}else{
 			return null;
 		}
 	}
 
 	renderHouseList(){
-		if (this.state.isLoggedIn === false){
+		// is set to false for debugging purposes (to bypass login); set to true in production env.
+		if (this.state.isLoggedIn === true){
 			return <HouseList isLoggedIn={this.state.isLoggedIn} />
 		}else{
 			return null;
@@ -45,7 +61,7 @@ class App extends Component<{}> {
 
 		return(
 			<View style={styles.appContainer}>
-				<Header headerText={"Houses"} />
+				{this.renderHeader()}
 				{this.renderAuth()}
 				{this.renderHouseList()}
 				<Footer>

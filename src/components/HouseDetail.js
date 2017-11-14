@@ -4,19 +4,20 @@ import { View, Text, Image, Linking } from 'react-native';
 import { Card, CardSection, Button } from './common';
 
 const HouseDetail = ({ house }) => {
-//	const { name } = house;
+	const { mainContainerStyle, containerStyle, contentStyle } = styles;
+
 
 	return(
 		<Card>
 			<CardSection>
-				<View>
+				<View style={containerStyle}>
 					<Text>
-						{JSON.stringify(house)}	
+						{JSON.stringify(house.name)}
 					</Text>
 				</View>
 			</CardSection>
 			<CardSection>
-				<Button onPress={ () => alert({house}) }>
+				<Button onPress={ () => alert(JSON.stringify(house)) }> 
 					show house name
 				</Button>
 			</CardSection>
@@ -25,7 +26,11 @@ const HouseDetail = ({ house }) => {
 };
 
 const styles = {
-
+	containerStyle: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'center',
+	},
 };
 
 export default HouseDetail;

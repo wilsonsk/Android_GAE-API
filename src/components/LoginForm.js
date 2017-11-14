@@ -4,22 +4,29 @@ import { View, Text } from 'react-native';
 import { Card, CardSection, Button, Input } from './common';
 
 class LoginForm extends Component<{}>{
-	state = {
-		email: '',
-		password: '',
-		isLoading: false
+	constructor(props){
+		super(props);
+		this.state = {
+			email: '',
+			password: '',
+			isLoading: false
+		}
 	};
 
-	_loginSuccessCB(){
-		return null;
+	renderButton(){
+		return(
+			<Button onPress={() => this.props.onPress()}>
+				Log In	
+			</Button>
+		);
 	}
 
 	render(){
 		return(
 			<Card>
-				<CardSection>
+				<CardSection style={styles.containerStyle}>
 					<Text>
-						Login
+						Welcome
 					</Text>
 				</CardSection>
 				<CardSection>
@@ -39,14 +46,16 @@ class LoginForm extends Component<{}>{
 						onChangeText={(text) => this.setState({ password: text })}
 					/>
 				</CardSection>
+				<CardSection>
+					{this.renderButton()}
+				</CardSection>
 			</Card>
 		);
 	}
 };
 
 const styles = {
-	container: {
-		flex: 1,
+	containerStyle: {
 	}
 };
 

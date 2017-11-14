@@ -18,6 +18,10 @@ class Auth extends Component <{}> {
 		}
 	}
 
+	loginButtonOnPress(){
+		this.props.loginSuccessCB();
+	}
+
 	_authConfig(){
 		try{
 			console.log('where firebase auth happens');
@@ -27,10 +31,9 @@ class Auth extends Component <{}> {
 	}
 
 	renderLoginForm() {
-		// set to false for debuggin purposes (bypasses authorization); for production, set to true
 		if (this.state.isLoggedIn === false){
 			return(	
-				<LoginForm />
+				<LoginForm onPress={this.loginButtonOnPress.bind(this)}/>
 			);
 		}else{
 			return null;
@@ -40,7 +43,7 @@ class Auth extends Component <{}> {
 	render(){
 		
 		return(
-			<View style={styles.container} >
+			<View style={styles.containerStyle} >
 				{this.renderLoginForm()}
 			</View>
 		);
@@ -49,8 +52,8 @@ class Auth extends Component <{}> {
 }
 
 const styles = {
-	container: {
-		flex: 1
+	containerStyle: {
+		flex: 1,
 	}
 };
 
