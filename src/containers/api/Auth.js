@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-import SessionStatus from '../../components/SessionStatus';
+import LoginForm from '../../components/LoginForm';
 
 class Auth extends Component <{}> {
 	constructor(props){
@@ -26,20 +26,26 @@ class Auth extends Component <{}> {
 		}
 	}
 
-	render(){
-		if(1){
-			return(
-				<View style={styles.container} >
-					<SessionStatus loggedInStatus={String(this.state.isLoggedIn)} />
-					{this.props.children}
-				</View>
+	renderLoginForm() {
+		// set to false for debuggin purposes (bypasses authorization); for production, set to true
+		if (this.state.isLoggedIn === false){
+			return(	
+				<LoginForm />
 			);
 		}else{
-			return(
-				<SessionStatus loggedInStatus={String(this.state.isLoggedIn)} />
-			);
+			return null;
 		}
 	}
+
+	render(){
+		
+		return(
+			<View style={styles.container} >
+				{this.renderLoginForm()}
+			</View>
+		);
+	}
+	
 }
 
 const styles = {
