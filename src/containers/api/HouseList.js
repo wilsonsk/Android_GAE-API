@@ -51,11 +51,18 @@ class HouseList extends Component<{}>{
 	}
 
 	render(){
+		const { containerStyle } = styles;
 		return(
-			<ScrollView>
+			<ScrollView style={containerStyle}>
 				{this._renderHouses()}
 			</ScrollView>
 		);
+	}
+};
+
+const styles = {
+	containerStyle: {
+		flex: 1,
 	}
 };
 
