@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 
 // Import custom RN components/containers
 import { Header, Footer } from './components/common';
-import LoginStatus from './components/LoginStatus';
+import User from './components/User';
 import { Auth, HouseList } from './containers/api';
 
 class App extends Component<{}> {
@@ -13,13 +13,15 @@ class App extends Component<{}> {
 		this.state = {
 			isLoading: true,
 			isLoggedIn: false,
+			user: {}
 		}
 		
 	}
 
-	loginSuccessCB(){
+	loginSuccessCB(user){
 		this.setState({
-			isLoggedIn: true 
+			isLoggedIn: true,
+			user: user
 		})
 	}
 
@@ -40,7 +42,17 @@ class App extends Component<{}> {
 
 	renderAuth(){
 		if (this.state.isLoggedIn === false){
-			return <Auth loginSuccessCB={() => this.loginSuccessCB()} isLoggedIn={this.state.isLoggedIn} />
+			return <Auth loginSuccessCB={this.loginSuccessCB.bind(this)} isLoggedIn={this.state.isLoggedIn} />
+		}else{
+			return null;
+		}
+	}
+
+	renderUser(){
+		if(this.state.user.email){
+			return(
+				<User user={this.state.user} />
+			);
 		}else{
 			return null;
 		}
@@ -65,7 +77,7 @@ class App extends Component<{}> {
 				{this.renderAuth()}
 				{this.renderHouseList()}
 				<Footer>
-					<LoginStatus loginStatus={this.state.isLoggedIn} />
+					{this.renderUser()}
 				</Footer>
 			</View>
 		);

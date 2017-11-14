@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const LoginStatus = (props) => {
+const User = (props) => {
 	const { container, content } = styles;
 
 	return(
 		<Text style={content} >
-			User Logged In Status: {String(props.loginStatus)}
+			User: {JSON.stringify(props.user.email)}
 		</Text>
 	);
 };
@@ -20,4 +20,4 @@ const styles = {
 	}
 };
 
-export default LoginStatus;
+export default User;

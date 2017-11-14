@@ -15,7 +15,7 @@ class LoginForm extends Component<{}>{
 
 	renderButton(){
 		return(
-			<Button onPress={() => this.props.onPress()}>
+			<Button onPress={() => this.props.onPress(this.state.email, this.state.password)}>
 				Log In	
 			</Button>
 		);

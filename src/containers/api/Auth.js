@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import firebase from 'firebase';
 
 import LoginForm from '../../components/LoginForm';
 
@@ -8,7 +9,9 @@ class Auth extends Component <{}> {
 		super(props);
 		this.state = {
 			isLoggedIn: this.props.isLoggedIn,
-			data: []
+			data: [],
+			authErrorMesage: '',
+			user: {}
 		}
 	}
 
@@ -18,16 +21,49 @@ class Auth extends Component <{}> {
 		}
 	}
 
-	loginButtonOnPress(){
-		this.props.loginSuccessCB();
+	loginButtonOnPress(email, password){
+		this.setState({
+			authErrorMessage: ''
+		})
+		firebase.auth().signInWithEmailAndPassword(email, password)
+			.then((user) => {
+				this.props.loginSuccessCB(user);
+			})
+			.catch((err) => {
+				firebase.auth().createUserWithEmailAndPassword(email, password)
+					.then((user) => {
+						this.props.loginSuccessCB(user);
+					})
+					.catch((err) => {
+						this.setState({
+							authErrorMessage: "Need an error message component here."
+						});
+					});
+			
+			});
+			
 	}
 
 	_authConfig(){
 		try{
-			console.log('where firebase auth happens');
+			firebase.initializeApp({
+				apiKey: "AIzaSyC3x7RPB2dKOF7Cf2TEjZvJ5yuv0kHhOqc",
+				apiKey: "AIzaSyC3x7RPB2dKOF7Cf2TEjZvJ5yuv0kHhOqc",
+				authDomain: "fir-auth-917d6.firebaseapp.com",
+				databaseURL: "https://fir-auth-917d6.firebaseio.com",
+				projectId: "fir-auth-917d6",
+				storageBucket: "",
+				messagingSenderId: "590748645411"
+			});
 		}catch(err){
 			alert(err);
 		}
+	}
+
+	renderAuthError(){
+		return(
+			<Text>{this.state.authErrorMessage}</Text>
+		);
 	}
 
 	renderLoginForm() {
@@ -44,6 +80,7 @@ class Auth extends Component <{}> {
 		
 		return(
 			<View style={styles.containerStyle} >
+				{this.renderAuthError()}
 				{this.renderLoginForm()}
 			</View>
 		);
