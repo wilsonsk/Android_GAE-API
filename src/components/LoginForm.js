@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 
-import { Card, CardSection, Button, Input } from './common';
+import { Card, CardSection, Button, Input, Spinner } from './common';
 
 class LoginForm extends Component<{}>{
 	constructor(props){
@@ -9,16 +9,23 @@ class LoginForm extends Component<{}>{
 		this.state = {
 			email: '',
 			password: '',
-			isLoading: false
+			isLoading: this.props.isLoading
 		}
 	};
 
 	renderButton(){
-		return(
-			<Button onPress={() => this.props.onPress(this.state.email, this.state.password)}>
-				Log In	
-			</Button>
-		);
+		switch(this.state.isLoading){
+			case (false): 
+				return(
+					<Button onPress={() => this.props.onPress(this.state.email, this.state.password)}>
+						Log In	
+					</Button>
+				);
+			case (true):
+				return(
+					<Spinner size="small" />	
+				);
+		}
 	}
 
 	render(){

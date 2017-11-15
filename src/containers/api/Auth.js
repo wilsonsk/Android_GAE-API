@@ -9,9 +9,9 @@ class Auth extends Component <{}> {
 		super(props);
 		this.state = {
 			isLoggedIn: this.props.isLoggedIn,
-			data: [],
 			authErrorMesage: '',
-			user: {}
+			user: {},
+			isLoading: false
 		}
 	}
 
@@ -23,15 +23,22 @@ class Auth extends Component <{}> {
 
 	loginButtonOnPress(email, password){
 		this.setState({
-			authErrorMessage: ''
+			authErrorMessage: '',
+			isLoading: true
 		})
 		firebase.auth().signInWithEmailAndPassword(email, password)
 			.then((user) => {
+				this.setState({
+					isLoading: false
+				});
 				this.props.loginSuccessCB(user);
 			})
 			.catch((err) => {
 				firebase.auth().createUserWithEmailAndPassword(email, password)
 					.then((user) => {
+						this.setState({
+							isLoading: false
+						});
 						this.props.loginSuccessCB(user);
 					})
 					.catch((err) => {
@@ -69,7 +76,7 @@ class Auth extends Component <{}> {
 	renderLoginForm() {
 		if (this.state.isLoggedIn === false){
 			return(	
-				<LoginForm onPress={this.loginButtonOnPress.bind(this)}/>
+				<LoginForm isLoading={this.state.isLoading} onPress={this.loginButtonOnPress.bind(this)}/>
 			);
 		}else{
 			return null;

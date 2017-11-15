@@ -9,7 +9,7 @@ const HouseDetail = ({ house }) => {
 
 	return(
 		<Card>
-			<CardSection>
+			<CardSection style={{flex: 1}}>
 				<View style={containerStyle}>
 					<Text>
 						{JSON.stringify(house.name)}
