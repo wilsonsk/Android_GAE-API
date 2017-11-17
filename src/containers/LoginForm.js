@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 
-import { Card, CardSection, Button, Input, Spinner } from './common';
+import { Card, CardSection, Button, Input, Spinner } from '../components/common';
 
 class LoginForm extends Component<{}>{
 	constructor(props){
@@ -23,7 +23,7 @@ class LoginForm extends Component<{}>{
 				);
 			case (true):
 				return(
-					<Spinner size="small" />	
+					<Spinner />	
 				);
 		}
 	}

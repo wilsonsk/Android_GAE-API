@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 // Import custom RN components/containers
 import { Header, Footer } from './components/common';
 import User from './components/User';
-import { Auth, HouseList } from './containers/api';
+import { Auth, HouseList, HouseForm } from './containers/api';
 
 class App extends Component<{}> {
 	constructor(props){

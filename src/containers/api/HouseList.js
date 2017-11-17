@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { ScrollView, View, Text } from 'react-native';
 
 import HouseDetail from '../../components/HouseDetail';
+import { Spinner } from '../../components/common';
 
 class HouseList extends Component<{}>{
 	constructor(props){
@@ -45,9 +46,15 @@ class HouseList extends Component<{}>{
 	}
 
 	_renderHouses(){
-		return this.state.houses.map((house) => {
-			return <HouseDetail key={house.id} house={house} isLoading={this.state.isLoading} />
-		});
+		if(this.state.isLoading === false){
+			return this.state.houses.map((house) => {
+				return <HouseDetail key={house.id} house={house} isLoading={this.state.isLoading} />
+			});
+		}else{
+			return(
+				<Spinner size="small" />
+			);
+		}
 	}
 
 	render(){
