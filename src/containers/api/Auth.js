@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import firebase from 'firebase';
 
-import LoginForm from '../LoginForm';
+import { LoginForm } from '../forms';
 
 class Auth extends Component <{}> {
 	constructor(props){

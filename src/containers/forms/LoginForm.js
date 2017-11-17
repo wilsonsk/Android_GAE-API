@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 
-import { Card, CardSection, Button, Input, Spinner } from '../components/common';
+import { Card, CardSection, Button, Input, Spinner } from '../../components/common';
 
 class LoginForm extends Component<{}>{
 	constructor(props){
@@ -66,4 +66,4 @@ const styles = {
 	}
 };
 
-export default LoginForm;
+export { LoginForm } ;

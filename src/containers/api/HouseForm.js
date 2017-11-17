@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
+
+import { PostForm } from '../forms';
 
 class HouseForm extends Component<{}>{
 	constructor(props){
@@ -6,6 +9,14 @@ class HouseForm extends Component<{}>{
 		this.state = {
 
 		};
+	}
+
+	render(){
+		return(
+			<View>
+				<PostForm />
+			</View>
+		);
 	}
 }
 
