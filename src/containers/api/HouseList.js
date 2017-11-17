@@ -9,6 +9,7 @@ class HouseList extends Component<{}>{
 		super(props);
 		this.state = {
 			isLoading: true,
+			listStyle: this.props.listStyle,
 			houses: []
 		};
 	}
@@ -31,6 +32,7 @@ class HouseList extends Component<{}>{
 					isLoading: false,
 					houses: responseJson.Boats
 				});
+				this.props.gotDataSuccessCB();
 			})
 			.catch((error) => {
 				console.error(error);
@@ -58,18 +60,11 @@ class HouseList extends Component<{}>{
 	}
 
 	render(){
-		const { containerStyle } = styles;
 		return(
-			<ScrollView style={containerStyle}>
+			<ScrollView style={this.state.listStyle}>
 				{this._renderHouses()}
 			</ScrollView>
 		);
-	}
-};
-
-const styles = {
-	containerStyle: {
-		flex: 1,
 	}
 };
 

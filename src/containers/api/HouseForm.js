@@ -7,13 +7,13 @@ class HouseForm extends Component<{}>{
 	constructor(props){
 		super(props);
 		this.state = {
-
+			formStyle: this.props.formStyle
 		};
 	}
 
 	render(){
 		return(
-			<View>
+			<View style={this.state.formStyle}>
 				<PostForm />
 			</View>
 		);

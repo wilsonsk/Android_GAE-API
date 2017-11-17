@@ -13,9 +13,18 @@ class App extends Component<{}> {
 		this.state = {
 			isLoading: true,
 			isLoggedIn: false,
-			user: {}
+			user: {},
+			gotData: false,
+			listStyle: styles.noDataListStyle,
+			formStyle: styles.noDataFormStyle
 		}
 		
+	}
+
+	gotDataSuccessCB(){
+		this.setState({
+			gotData: true
+		})
 	}
 
 	loginSuccessCB(user){
@@ -61,7 +70,23 @@ class App extends Component<{}> {
 	renderHouseList(){
 		// is set to false for debugging purposes (to bypass login); set to true in production env.
 		if (this.state.isLoggedIn === true){
-			return <HouseList isLoggedIn={this.state.isLoggedIn} />
+			if(this.state.gotData === true){
+				return <HouseList listStyle={styles.noDataListStyle} gotDataSuccessCB={this.gotDataSuccessCB.bind(this)} isLoggedIn={this.state.isLoggedIn} />
+			}else{
+				return <HouseList listStyle={styles.gotDataListStyle} gotDataSuccessCB={this.gotDataSuccessCB.bind(this)} isLoggedIn={this.state.isLoggedIn} />
+			}
+		}else{
+			return null;
+		}
+	}
+
+	renderHouseForm(){
+		if(this.state.isLoggedIn === true){
+			if(this.state.gotData === true){
+				return <HouseForm formStyle={styles.noDataFormStyle} isLoggedIn={this.state.isLoggedIn} />
+			}else{
+				return <HouseForm formStyle={styles.gotDataFormStyle} isLoggedIn={this.state.isLoggedIn} />
+			}
 		}else{
 			return null;
 		}
@@ -76,6 +101,7 @@ class App extends Component<{}> {
 				{this.renderHeader()}
 				{this.renderAuth()}
 				{this.renderHouseList()}
+				{this.renderHouseForm()}
 				<Footer>
 					{this.renderUser()}
 				</Footer>
@@ -87,6 +113,19 @@ class App extends Component<{}> {
 const styles = {
 	appContainer: { 
 		flex: 1,
+		flexDirection: 'column',
+	},
+	noDataListStyle: {
+		flex: 1,
+	},
+	noDataFormStyle: {
+		flex: 1.618,
+	},
+	gotDataListStyle: {
+		flex: 1.618,
+	},
+	gotDataFormStyle: {
+		flex: 1
 	}
 }
 
