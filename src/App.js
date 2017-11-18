@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
+import NativeTachyons from "react-native-style-tachyons";
 
 // Import custom RN components/containers
 import { Header, Footer } from './components/common';
 import User from './components/User';
 import { Auth, HouseList, HouseForm } from './containers/api';
+
+NativeTachyons.build({
+
+}, StyleSheet);
 
 class App extends Component<{}> {
 	constructor(props){
@@ -97,7 +102,7 @@ class App extends Component<{}> {
 		
 
 		return(
-			<View style={styles.appContainer}>
+			<View style={NativeTachyons.styles.flx_i}>
 				{this.renderHeader()}
 				{this.renderAuth()}
 				{this.renderHouseList()}
@@ -109,6 +114,7 @@ class App extends Component<{}> {
 		);
 	}
 }
+
 
 const styles = {
 	appContainer: { 
