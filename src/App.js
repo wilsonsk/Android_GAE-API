@@ -78,9 +78,9 @@ class App extends Component<{}> {
 		// is set to false for debugging purposes (to bypass login); set to true in production env.
 		if (this.state.isLoggedIn === true){
 			if(this.state.gotData === true){
-				return <HouseList listStyle={styles.noDataListStyle} gotDataSuccessCB={this.gotDataSuccessCB.bind(this)} isLoggedIn={this.state.isLoggedIn} />
+				return <HouseList listStyle={styles.noDataListStyle} gotDataSuccessCB={this.gotDataSuccessCB.bind(this)} isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
 			}else{
-				return <HouseList listStyle={styles.gotDataListStyle} gotDataSuccessCB={this.gotDataSuccessCB.bind(this)} isLoggedIn={this.state.isLoggedIn} />
+				return <HouseList listStyle={styles.gotDataListStyle} gotDataSuccessCB={this.gotDataSuccessCB.bind(this)} isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
 			}
 		}else{
 			return null;

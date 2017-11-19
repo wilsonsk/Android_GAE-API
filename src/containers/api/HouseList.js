@@ -8,6 +8,7 @@ class HouseList extends Component<{}>{
 	constructor(props){
 		super(props);
 		this.state = {
+			userId: this.props.user.uid,
 			isLoading: true,
 			listStyle: this.props.listStyle,
 			houses: []
@@ -18,7 +19,8 @@ class HouseList extends Component<{}>{
 	}
 
 	_getCB(){
-		return fetch('https://android-endpoint.appspot.com/home', {
+		urlToFetch = 'https://android-endpoint.appspot.com/home?userId=' + this.state.userId;
+		return fetch( urlToFetch, {
 			method: 'GET',
 			dataType: 'json',
 			headers: {
@@ -53,7 +55,7 @@ class HouseList extends Component<{}>{
 	_renderHouses(){
 		if(this.state.isLoading === false){
 			return this.state.houses.map((house) => {
-				return <HouseDetail key={house.id} house={house} isLoading={this.state.isLoading} />
+				return <HouseDetail key={house.address} house={house} isLoading={this.state.isLoading} />
 			});
 		}else{
 			return(
