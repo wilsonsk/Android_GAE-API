@@ -16,11 +16,10 @@ class HouseForm extends Component<{}>{
 	}
 
 	handleSubmitData(userId, address, headline, squareFeet, price){
-		alert(JSON.stringify(userId));
 		this.setState({
 			isLoading: true
 		});
-		return fetch('https://rest-api-implementation-183317.appspot.com/boats', {
+		return fetch('https://android-endpoint.appspot.com/home', {
 			method: 'POST',
 			dataType: 'json',
 			headers: {

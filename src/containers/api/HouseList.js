@@ -18,7 +18,7 @@ class HouseList extends Component<{}>{
 	}
 
 	_getCB(){
-		return fetch('https://rest-api-implementation-183317.appspot.com/boats', {
+		return fetch('https://android-endpoint.appspot.com/home', {
 			method: 'GET',
 			dataType: 'json',
 			headers: {
@@ -28,9 +28,9 @@ class HouseList extends Component<{}>{
 		})
 			.then((response) => response.json())
 			.then((responseJson) => {
+				alert(JSON.stringify(responseJson));
 				this.setState({
 					isLoading: false,
-					houses: responseJson.Boats
 				});
 				this.props.gotDataSuccessCB();
 			})
