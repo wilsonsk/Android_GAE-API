@@ -7,13 +7,23 @@ class PostForm extends Component<{}> {
 	constructor(props){
 		super(props);
 		this.state = {
+			userId: this.props.userId,
 			address: '',
-			squareFeet: '',
 			headline: '',
+			squareFeet: '',
 			price: '',
 		};
 	};
 
+	handleOnPress(){
+		this.props.submitData(
+			this.state.userId,
+			this.state.address,
+			this.state.headline,
+			this.state.squareFeet,
+			this.state.price
+		);
+	}
 
 	render(){
 		return(
@@ -36,19 +46,19 @@ class PostForm extends Component<{}> {
 						})}
 					/>
 					<Input 
-						placeHolder="123 Sq."
-						label="Square Footage"
-						value={this.state.squareFeet}
-						onChangeText={(text) => this.setState({
-							squareFeet: text
-						})}
-					/>
-					<Input 
 						placeHolder="2 Baths, 3 Bedroom"
 						label="Headline"
 						value={this.state.headline}
 						onChangeText={(text) => this.setState({
 							headline: text
+						})}
+					/>
+					<Input 
+						placeHolder="123 Sq."
+						label="Square Footage"
+						value={this.state.squareFeet}
+						onChangeText={(text) => this.setState({
+							squareFeet: text
 						})}
 					/>
 					<Input 
@@ -61,7 +71,9 @@ class PostForm extends Component<{}> {
 					/>
 				</CardSection>
 				<CardSection>
-					<Button />
+					<Button onPress={() => this.handleOnPress()}>
+						POST 
+					</Button>
 				</CardSection>
 			</Card>
 		);

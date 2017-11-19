@@ -21,7 +21,6 @@ class App extends Component<{}> {
 			isLoading: true,
 			isLoggedIn: false,
 			user: {},
-			idToken: "", 
 			gotData: false,
 			listStyle: styles.noDataListStyle,
 			formStyle: styles.noDataFormStyle
@@ -35,13 +34,11 @@ class App extends Component<{}> {
 		})
 	}
 
-	loginSuccessCB(user, token){
+	loginSuccessCB(user){
 		this.setState({
 			isLoggedIn: true,
 			user: user,
-			idToken: token
 		})
-		alert(JSON.stringify(this.state.idToken));
 	}
 
 	renderHeader(){ 
@@ -93,9 +90,9 @@ class App extends Component<{}> {
 	renderHouseForm(){
 		if(this.state.isLoggedIn === true){
 			if(this.state.gotData === true){
-				return <HouseForm formStyle={styles.noDataFormStyle} isLoggedIn={this.state.isLoggedIn} />
+				return <HouseForm formStyle={styles.noDataFormStyle} isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
 			}else{
-				return <HouseForm formStyle={styles.gotDataFormStyle} isLoggedIn={this.state.isLoggedIn} />
+				return <HouseForm formStyle={styles.gotDataFormStyle} isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
 			}
 		}else{
 			return null;
