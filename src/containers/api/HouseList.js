@@ -28,10 +28,13 @@ class HouseList extends Component<{}>{
 		})
 			.then((response) => response.json())
 			.then((responseJson) => {
-				alert(JSON.stringify(responseJson));
+				res = JSON.parse(responseJson);
+				homes = res.Homes;
 				this.setState({
-					isLoading: false,
+					houses: homes,
+					isLoading: false
 				});
+				alert(JSON.stringify(this.state.houses));
 				this.props.gotDataSuccessCB();
 			})
 			.catch((error) => {
@@ -69,3 +72,4 @@ class HouseList extends Component<{}>{
 };
 
 export { HouseList };
+
