@@ -28,10 +28,12 @@ class Auth extends Component <{}> {
 		})
 		firebase.auth().signInWithEmailAndPassword(email, password)
 			.then((user) => {
-				this.setState({
-					isLoading: false
+				user.getIdToken().then((idToken) => {
+					this.setState({
+						isLoading: false
+					});
+					this.props.loginSuccessCB(user, idToken);
 				});
-				this.props.loginSuccessCB(user);
 			})
 			.catch((err) => {
 				firebase.auth().createUserWithEmailAndPassword(email, password)

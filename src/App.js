@@ -12,6 +12,8 @@ NativeTachyons.build({
 
 }, StyleSheet);
 
+//need to initialize isloggedIn === null to enable 3 state conditional logic for initial render (ie use spinned when null)
+
 class App extends Component<{}> {
 	constructor(props){
 		super(props);
@@ -19,6 +21,7 @@ class App extends Component<{}> {
 			isLoading: true,
 			isLoggedIn: false,
 			user: {},
+			idToken: "", 
 			gotData: false,
 			listStyle: styles.noDataListStyle,
 			formStyle: styles.noDataFormStyle
@@ -32,11 +35,13 @@ class App extends Component<{}> {
 		})
 	}
 
-	loginSuccessCB(user){
+	loginSuccessCB(user, token){
 		this.setState({
 			isLoggedIn: true,
-			user: user
+			user: user,
+			idToken: token
 		})
+		alert(JSON.stringify(this.state.idToken));
 	}
 
 	renderHeader(){ 
