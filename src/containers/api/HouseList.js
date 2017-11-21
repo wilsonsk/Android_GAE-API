@@ -11,9 +11,10 @@ class HouseList extends Component<{}>{
 			userId: this.props.user.uid,
 			isLoading: true,
 			listStyle: this.props.listStyle,
-			houses: []
+			houses: this.props.houses,
 		};
 	}
+
 	componentWillMount(){
 		this._getCB();
 	}
@@ -36,21 +37,12 @@ class HouseList extends Component<{}>{
 					houses: homes,
 					isLoading: false
 				});
-				alert(JSON.stringify(this.state.houses));
-				this.props.gotDataSuccessCB();
 			})
 			.catch((error) => {
 				console.error(error);
 			});
 	}
 
-	_postCB(){
-
-	}
-
-	_deleteCB(){
-
-	}
 
 	_renderHouses(){
 		if(this.state.isLoading === false){

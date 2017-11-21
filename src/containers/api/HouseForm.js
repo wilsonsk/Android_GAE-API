@@ -15,11 +15,37 @@ class HouseForm extends Component<{}>{
 		};
 	}
 
-	handleSubmitData(userId, address, headline, squareFeet, price){
+	handleSubmitData(key, userId, address, headline, squareFeet, price){
+		if(!key){
+			var getUrl = 'https://android-endpoint.appspot.com/home';
+			if(!userId){
+				alert("UserId error");
+				return null;
+			}
+			if(!address){
+				alert("Address error");
+				return null;
+			}
+			if(!headline){
+			alert("Headline error");
+				return null;
+			}
+			if(!squareFeet){
+				alert("Square Feet error " + typeof squareFeet);
+				return null;
+			}
+			if(!price){
+				alert("Price error " + typeof price);
+				return null;
+			}
+		}else{
+			var getUrl = 'https://android-endpoint.appspot.com/home?entityKey=' + key;
+		}
 		this.setState({
 			isLoading: true
 		});
-		return fetch('https://android-endpoint.appspot.com/home', {
+
+		return fetch(getUrl, {
 			method: 'POST',
 			dataType: 'json',
 			headers: {
@@ -34,10 +60,15 @@ class HouseForm extends Component<{}>{
 				price: price,
 			})
 		})
-			.then((res) => {
+			.then((res) => res.json())
+			.then((responseJson) => {
+				res = JSON.parse(responseJson);
+				home = res.Home
 				this.setState({
 					isLoading: false
 				});
+				this.props.onPress();
+				alert(JSON.stringify(home));
 			})
 			.catch((error) => {
 				console.error(error);

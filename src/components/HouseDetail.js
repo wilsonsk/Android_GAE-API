@@ -12,7 +12,7 @@ const HouseDetail = ({ house }) => {
 			<CardSection style={{flex: 1}}>
 				<View style={containerStyle}>
 					<Text>
-						{JSON.stringify(house.name)}
+						{JSON.stringify(house.address)}
 					</Text>
 				</View>
 			</CardSection>

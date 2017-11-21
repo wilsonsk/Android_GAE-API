@@ -7,6 +7,7 @@ class PostForm extends Component<{}> {
 	constructor(props){
 		super(props);
 		this.state = {
+			entityKey: '',
 			userId: this.props.userId,
 			address: '',
 			headline: '',
@@ -17,6 +18,7 @@ class PostForm extends Component<{}> {
 
 	handleOnPress(){
 		this.props.submitData(
+			this.state.entityKey,
 			this.state.userId,
 			this.state.address,
 			this.state.headline,
@@ -37,6 +39,14 @@ class PostForm extends Component<{}> {
 					</Text>
 				</CardSection>
 				<CardSection>
+					<Input 
+						placeHolder="abcde"
+						label="ID"
+						value={this.state.entityKey}
+						onChangeText={(text) => this.setState({
+							entityKey: text
+						})}
+					/>
 					<Input 
 						placeHolder="123 St."
 						label="Address"

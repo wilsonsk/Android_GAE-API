@@ -23,22 +23,44 @@ class App extends Component<{}> {
 			user: {},
 			gotData: false,
 			listStyle: styles.noDataListStyle,
-			formStyle: styles.noDataFormStyle
+			formStyle: styles.noDataFormStyle,
+			houses: [],
 		}
 		
 	}
 
-	gotDataSuccessCB(){
-		this.setState({
-			gotData: true
-		})
-	}
 
 	loginSuccessCB(user){
 		this.setState({
 			isLoggedIn: true,
 			user: user,
 		})
+	}
+
+	onPostCB(){
+		this.setState({
+			isLoading: true,
+		})
+		urlToFetch = 'https://android-endpoint.appspot.com/home?userId=' + this.state.user.uid;
+		return fetch( urlToFetch, {
+			method: 'GET',
+			dataType: 'json',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			}
+		})
+			.then((response) => response.json())
+			.then((responseJson) => {
+				res = JSON.parse(responseJson);
+				homes = res.Homes;
+				this.setState({
+					houses: homes,
+				});
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}
 
 	renderHeader(){ 
@@ -78,9 +100,9 @@ class App extends Component<{}> {
 		// is set to false for debugging purposes (to bypass login); set to true in production env.
 		if (this.state.isLoggedIn === true){
 			if(this.state.gotData === true){
-				return <HouseList listStyle={styles.noDataListStyle} gotDataSuccessCB={this.gotDataSuccessCB.bind(this)} isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
+				return <HouseList listStyle={styles.noDataListStyle} houses={this.state.houses} isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
 			}else{
-				return <HouseList listStyle={styles.gotDataListStyle} gotDataSuccessCB={this.gotDataSuccessCB.bind(this)} isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
+				return <HouseList listStyle={styles.gotDataListStyle} houses={this.state.houses} isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
 			}
 		}else{
 			return null;
@@ -90,9 +112,9 @@ class App extends Component<{}> {
 	renderHouseForm(){
 		if(this.state.isLoggedIn === true){
 			if(this.state.gotData === true){
-				return <HouseForm formStyle={styles.noDataFormStyle} isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
+				return <HouseForm formStyle={styles.noDataFormStyle} isLoggedIn={this.state.isLoggedIn} user={this.state.user} onPress={this.onPostCB.bind(this)} />
 			}else{
-				return <HouseForm formStyle={styles.gotDataFormStyle} isLoggedIn={this.state.isLoggedIn} user={this.state.user} />
+				return <HouseForm formStyle={styles.gotDataFormStyle} isLoggedIn={this.state.isLoggedIn} user={this.state.user} onPress={this.onPostCB.bind(this)} />
 			}
 		}else{
 			return null;
