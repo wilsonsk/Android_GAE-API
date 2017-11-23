@@ -46,9 +46,7 @@ class HouseList extends Component<{}>{
 
 	_renderHouses(){
 		if(this.state.isLoading === false){
-			return this.state.houses.map((house) => {
-				return <HouseDetail key={house.address} house={house} isLoading={this.state.isLoading} />
-			});
+			return <HouseDetail houses={this.state.houses} isLoading={this.state.isLoading} />
 		}else{
 			return(
 				<Spinner size="small" />

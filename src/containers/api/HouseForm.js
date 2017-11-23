@@ -62,13 +62,11 @@ class HouseForm extends Component<{}>{
 		})
 			.then((res) => res.json())
 			.then((responseJson) => {
-				res = JSON.parse(responseJson);
-				home = res.Home
+				alert(JSON.stringify(responseJson));
 				this.setState({
 					isLoading: false
 				});
 				this.props.onPress();
-				alert(JSON.stringify(home));
 			})
 			.catch((error) => {
 				console.error(error);

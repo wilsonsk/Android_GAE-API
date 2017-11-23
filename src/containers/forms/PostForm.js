@@ -34,9 +34,6 @@ class PostForm extends Component<{}> {
 					<Text>
 						Hello Post Form
 					</Text>
-					<Text>
-						{this.state.address}
-					</Text>
 				</CardSection>
 				<CardSection>
 					<Input 

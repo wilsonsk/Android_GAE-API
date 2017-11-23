@@ -16,7 +16,9 @@ const styles = {
 		backgroundColor: '#fff',
 		justifyContent: 'flex-start',
 		flexDirection: 'row',
+		flexWrap: 'wrap',
 		borderColor: '#ddd',
+		overflow: 'scroll',
 		position: 'relative'
 	}
 };
