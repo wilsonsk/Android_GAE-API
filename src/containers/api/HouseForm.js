@@ -114,7 +114,7 @@ class HouseForm extends Component<{}>{
 
 	handleSubmitGet(key, userId){
 		if(!key){
-			alert("key (get) error");
+			alert("key (get) error " + key);
 		}else {
 			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
 			this.setState({
@@ -128,9 +128,6 @@ class HouseForm extends Component<{}>{
 					'Accept': 'application/json',
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({
-					userId: userId
-				})
 			})
 				.then((res) => res.json())
 				.then((responseJson) => {

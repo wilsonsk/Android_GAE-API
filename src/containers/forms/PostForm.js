@@ -35,7 +35,7 @@ class PostForm extends Component<{}> {
 
 	handleOnGet(){
 		this.props.submitGet(
-
+			this.state.entityKey,
 		);
 	}
 
