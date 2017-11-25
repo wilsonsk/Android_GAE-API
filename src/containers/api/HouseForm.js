@@ -151,7 +151,12 @@ class HouseForm extends Component<{}>{
 
 	handleSubmitDelete(key, userId){
 		if(!key){
-			alert("key (get) error " + key);
+			alert("key (patch) error");
+			if(!userId){
+				alert("UserId error");
+				return null;
+			}
+			return null;
 		}else {
 			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
 			this.setState({
@@ -159,7 +164,7 @@ class HouseForm extends Component<{}>{
 			});
 	
 			return fetch(getUrl, {
-				method: 'GET',
+				method: 'DELETE',
 				dataType: 'json',
 				headers: {
 					'Accept': 'application/json',
