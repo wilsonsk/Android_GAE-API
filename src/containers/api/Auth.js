@@ -41,11 +41,6 @@ class Auth extends Component <{}> {
 							isLoading: false
 						});
 						this.props.loginSuccessCB(user);
-					})
-					.catch((err) => {
-						this.setState({
-							authErrorMessage: "Need an error message component here."
-						});
 					});
 			
 			});

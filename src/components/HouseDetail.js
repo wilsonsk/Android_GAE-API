@@ -18,7 +18,7 @@ class HouseDetail extends Component<{}> {
 					<FlatList
 						style={styles.flx1}
 						data={this.state.houses}
-						extraData={this.state}
+						extraData={this.state.houses}
 						keyExtractor={item => item.address}
 						renderItem={({ item }) => 
 							<Card>
@@ -58,7 +58,7 @@ class HouseDetail extends Component<{}> {
 								</CardSection>
 								<CardSection>
 									<Button onPress={ () => alert(JSON.stringify(item)) }> 
-										show house 
+										show raw home data 
 									</Button>
 								</CardSection>
 							</Card>

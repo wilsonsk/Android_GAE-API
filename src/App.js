@@ -37,30 +37,12 @@ class App extends Component<{}> {
 		})
 	}
 
-	onPostCB(){
+	onPostCB(homes){
+		res = JSON.parse(homes);
+		home = res.Homes;
 		this.setState({
-			isLoading: true,
+			houses: home,
 		})
-		urlToFetch = 'https://android-endpoint.appspot.com/home?userId=' + this.state.user.uid;
-		return fetch( urlToFetch, {
-			method: 'GET',
-			dataType: 'json',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			}
-		})
-			.then((response) => response.json())
-			.then((responseJson) => {
-				res = JSON.parse(responseJson);
-				homes = res.Homes;
-				this.setState({
-					houses: homes,
-				});
-			})
-			.catch((error) => {
-				console.error(error);
-			});
 	}
 
 	renderHeader(){ 

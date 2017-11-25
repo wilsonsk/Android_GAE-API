@@ -67,7 +67,6 @@ class HouseForm extends Component<{}>{
 				this.setState({
 					isLoading: false
 				});
-				this.props.onPress();
 			})
 			.catch((error) => {
 				console.error(error);
@@ -106,11 +105,9 @@ class HouseForm extends Component<{}>{
 		})
 			.then((res) => res.json())
 			.then((responseJson) => {
-				alert(JSON.stringify(responseJson));
 				this.setState({
 					isLoading: false
 				});
-				this.props.onPress();
 			})
 			.catch((error) => {
 				console.error(error);
@@ -119,33 +116,35 @@ class HouseForm extends Component<{}>{
 
 	handleSubmitGet(key, userId){
 		if(!key){
-			alert("key (get) error " + key);
+			if(!userId){
+				alert("UserId error");
+				return null;
+			}
+			var getUrl = 'https://android-endpoint.appspot.com/home?userId=' + userId;
 		}else {
-			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
+			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key + '&userId=' + userId;
 			this.setState({
 				isLoading: true
 			});
-	
-			return fetch(getUrl, {
-				method: 'GET',
-				dataType: 'json',
-				headers: {
-					'Accept': 'application/json',
-					'Content-Type': 'application/json'
-				},
-			})
-				.then((res) => res.json())
-				.then((responseJson) => {
-					alert(JSON.stringify(responseJson));
-					this.setState({
-							isLoading: false
-					});
-					this.props.onPress();
-				})
-				.catch((error) => {
-					console.error(error);
-				});
 		}
+		return fetch(getUrl, {
+			method: 'GET',
+			dataType: 'json',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+		})
+			.then((res) => res.json())
+			.then((responseJson) => {
+				this.props.onPress(responseJson);
+				this.setState({
+					isLoading: false,
+				});
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}
 
 
@@ -158,7 +157,7 @@ class HouseForm extends Component<{}>{
 			}
 			return null;
 		}else {
-			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
+			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key + '&userId=' + userId;
 			this.setState({
 				isLoading: true
 			});
@@ -173,11 +172,9 @@ class HouseForm extends Component<{}>{
 			})
 				.then((res) => res.json())
 				.then((responseJson) => {
-					alert(JSON.stringify(responseJson));
 					this.setState({
 							isLoading: false
 					});
-					this.props.onPress();
 				})
 				.catch((error) => {
 					console.error(error);

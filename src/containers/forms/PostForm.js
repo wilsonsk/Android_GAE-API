@@ -19,6 +19,7 @@ class PostForm extends Component<{}> {
 	handleOnGet(){
 		this.props.submitGet(
 			this.state.entityKey,
+			this.state.userId,
 		);
 	}
 
@@ -48,6 +49,7 @@ class PostForm extends Component<{}> {
 	handleOnDelete(){
 		this.props.submitDelete(
 			this.state.entityKey,
+			this.state.userId,
 		);
 	}
 
