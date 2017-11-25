@@ -16,6 +16,12 @@ class PostForm extends Component<{}> {
 		};
 	};
 
+	handleOnGet(){
+		this.props.submitGet(
+			this.state.entityKey,
+		);
+	}
+
 	handleOnPost(){
 		this.props.submitPost(
 			this.state.entityKey,
@@ -29,12 +35,18 @@ class PostForm extends Component<{}> {
 
 	handleOnPatch(){ 
 		this.props.submitPatch(
-
+			this.state.entityKey,
+			this.state.userId,
+			this.state.address,
+			this.state.headline,
+			this.state.squareFeet,
+			this.state.price
 		);
 	}
 
-	handleOnGet(){
-		this.props.submitGet(
+
+	handleOnDelete(){
+		this.props.submitDelete(
 			this.state.entityKey,
 		);
 	}
@@ -96,16 +108,19 @@ class PostForm extends Component<{}> {
 					</CardSection>
 				</ScrollView>
 				<CardSection>
+					<Button onPress={() => this.handleOnGet()}>
+						GET 
+					</Button>
 					<Button onPress={() => this.handleOnPost()}>
 						POST 
 					</Button>
+				</CardSection>
+				<CardSection>
 					<Button onPress={() => this.handleOnPatch()}>
 						PATCH 
 					</Button>
-				</CardSection>
-				<CardSection>
-					<Button onPress={() => this.handleOnGet()}>
-						GET 
+					<Button onPress={() => this.handleOnDelete()}>
+						DELETE 
 					</Button>
 				</CardSection>
 			</Card>

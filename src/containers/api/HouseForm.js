@@ -74,9 +74,14 @@ class HouseForm extends Component<{}>{
 			});
 	}
 
-	handleSubmitPatch(key, userId, address, headline, squareFeet, price){
+	handleSubmitPatch(key, userId, address=null, headline=null, squareFeet=null, price=null){
 		if(!key){
 			alert("key (patch) error");
+			if(!userId){
+				alert("UserId error");
+				return null;
+			}
+			return null;
 		}else {
 			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
 		}
@@ -93,10 +98,10 @@ class HouseForm extends Component<{}>{
 			},
 			body: JSON.stringify({
 				userId: userId,
-				address: address || null,
-				headline: headline || null,
-				squareFeet: squareFeet || null,
-				price: price || null,
+				address: address,
+				headline: headline,
+				squareFeet: squareFeet,
+				price: price,
 			})
 		})
 			.then((res) => res.json())
@@ -143,11 +148,44 @@ class HouseForm extends Component<{}>{
 		}
 	}
 
+
+	handleSubmitDelete(key, userId){
+		if(!key){
+			alert("key (get) error " + key);
+		}else {
+			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
+			this.setState({
+				isLoading: true
+			});
+	
+			return fetch(getUrl, {
+				method: 'GET',
+				dataType: 'json',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+			})
+				.then((res) => res.json())
+				.then((responseJson) => {
+					alert(JSON.stringify(responseJson));
+					this.setState({
+							isLoading: false
+					});
+					this.props.onPress();
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		}
+	}
+
+
 	renderForm(){
 		if(this.state.isLoading === true){
 			return <Spinner />
 		}else{
-			return <PostForm userId={this.state.userId} submitPost={this.handleSubmitPost.bind(this)} submitPatch={this.handleSubmitPatch.bind(this)} submitGet={this.handleSubmitGet.bind(this)} />
+			return <PostForm userId={this.state.userId} submitPost={this.handleSubmitPost.bind(this)} submitPatch={this.handleSubmitPatch.bind(this)} submitGet={this.handleSubmitGet.bind(this)} submitDelete={this.handleSubmitDelete.bind(this)} />
 		}
 	}
 
