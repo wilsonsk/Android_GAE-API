@@ -56,9 +56,9 @@ class HouseList extends Component<{}>{
 
 	render(){
 		return(
-			<ScrollView style={this.state.listStyle}>
+			<View style={this.state.listStyle}>
 				{this._renderHouses()}
-			</ScrollView>
+			</View>
 		);
 	}
 };

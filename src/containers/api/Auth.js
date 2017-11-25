@@ -36,6 +36,7 @@ class Auth extends Component <{}> {
 			.catch((err) => {
 				firebase.auth().createUserWithEmailAndPassword(email, password)
 					.then((user) => {
+						alert("Welcome, new account created.");
 						this.setState({
 							isLoading: false
 						});

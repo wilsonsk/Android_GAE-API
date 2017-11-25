@@ -15,7 +15,7 @@ class HouseForm extends Component<{}>{
 		};
 	}
 
-	handleSubmitData(key, userId, address, headline, squareFeet, price){
+	handleSubmitPost(key, userId, address, headline, squareFeet, price){
 		if(!key){
 			var getUrl = 'https://android-endpoint.appspot.com/home';
 			if(!userId){
@@ -38,8 +38,8 @@ class HouseForm extends Component<{}>{
 				alert("Price error " + typeof price);
 				return null;
 			}
-		}else{
-			var getUrl = 'https://android-endpoint.appspot.com/home?entityKey=' + key;
+		}else if(!userId && !address && !headline && !squareFeet && !price) {
+			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
 		}
 		this.setState({
 			isLoading: true
@@ -53,6 +53,7 @@ class HouseForm extends Component<{}>{
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
+				homeId: Math.random().toString(36).substr(2, 9),
 				userId: userId,
 				address: address,
 				headline: headline,
@@ -73,11 +74,83 @@ class HouseForm extends Component<{}>{
 			});
 	}
 
+	handleSubmitPatch(key, userId, address, headline, squareFeet, price){
+		if(!key){
+			alert("key (patch) error");
+		}else {
+			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
+		}
+		this.setState({
+			isLoading: true
+		});
+
+		return fetch(getUrl, {
+			method: 'PATCH',
+			dataType: 'json',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				userId: userId,
+				address: address || null,
+				headline: headline || null,
+				squareFeet: squareFeet || null,
+				price: price || null,
+			})
+		})
+			.then((res) => res.json())
+			.then((responseJson) => {
+				alert(JSON.stringify(responseJson));
+				this.setState({
+					isLoading: false
+				});
+				this.props.onPress();
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}
+
+	handleSubmitGet(key, userId){
+		if(!key){
+			alert("key (get) error");
+		}else {
+			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
+			this.setState({
+				isLoading: true
+			});
+	
+			return fetch(getUrl, {
+				method: 'GET',
+				dataType: 'json',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					userId: userId
+				})
+			})
+				.then((res) => res.json())
+				.then((responseJson) => {
+					alert(JSON.stringify(responseJson));
+					this.setState({
+							isLoading: false
+					});
+					this.props.onPress();
+				})
+				.catch((error) => {
+					console.error(error);
+				});
+		}
+	}
+
 	renderForm(){
 		if(this.state.isLoading === true){
 			return <Spinner />
 		}else{
-			return <PostForm userId={this.state.userId} submitData={this.handleSubmitData.bind(this)} />
+			return <PostForm userId={this.state.userId} submitPost={this.handleSubmitPost.bind(this)} submitPatch={this.handleSubmitPatch.bind(this)} submitGet={this.handleSubmitGet.bind(this)} />
 		}
 	}
 

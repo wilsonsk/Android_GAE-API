@@ -147,15 +147,31 @@ const styles = {
 	},
 	noDataListStyle: {
 		flex: 1,
+		paddingBottom: 10,
+		borderWidth: 5,
+		borderColor: 'black',
+		borderBottomWidth: 0,
 	},
 	noDataFormStyle: {
 		flex: 1.618,
+		paddingBottom: 10,
+		borderWidth: 5,
+		borderColor: 'black',
+		borderBottomWidth: 0,
 	},
 	gotDataListStyle: {
 		flex: 1.618,
+		paddingBottom: 10,
+		borderWidth: 5,
+		borderColor: 'black',
+		borderBottomWidth: 0,
 	},
 	gotDataFormStyle: {
-		flex: 1
+		flex: 1,
+		paddingBottom: 10,
+		borderWidth: 5,
+		borderColor: 'black',
+		borderBottomWidth: 0,
 	}
 }
 

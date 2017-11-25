@@ -13,8 +13,8 @@ class HouseDetail extends Component<{}> {
 
 	renderDetails(){
 		if(this.state.houses !== null){
-			alert("rendering detail");
 			return(
+				<View style={styles.flx1}>
 					<FlatList
 						style={styles.flx1}
 						data={this.state.houses}
@@ -25,11 +25,21 @@ class HouseDetail extends Component<{}> {
 								<CardSection style={{flex: 1}}>
 									<View style={styles.containerStyle}>
 										<Text>
+											Listing ID: {JSON.stringify(item.homeId)}
+										</Text>
+									</View>
+								</CardSection>
+								<CardSection>
+									<View style={styles.containerStyle}>
+										<Text>
 											Address: {JSON.stringify(item.address)}
 										</Text>
 									</View>
+								</CardSection>
+								<CardSection>
 									<View style={styles.containerStyle}>
 										<Text>
+
 											{JSON.stringify(item.headline)}
 										</Text>
 									</View>
@@ -55,6 +65,7 @@ class HouseDetail extends Component<{}> {
 						}		
 		
 					/>
+				</View>
 			);
 		}else{
 			return <Card />
