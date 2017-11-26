@@ -55,10 +55,12 @@ To run this project, you will need Node, the React Native command line interface
 ## 5. Wait for the Android home screen to load
 ## 6. Open the Command Prompt as Administrator
 ## 7. Clone into `ReactNativeGAE_UI` repository
-### `git clone https://github.com/wilsonsk/ReactNativeGAE_UI.git`
+###### `git clone https://github.com/wilsonsk/ReactNativeGAE_UI.git`
 ### 	a. enter the `ReactNativeGAE_RestApi` directory
-### 	b. enter the command, `npm install`
-### 	c. enter the command, `react-native run-android`
+### 	b. enter the command, 
+###### `npm install`
+### 	c. enter the command, 
+###### `react-native run-android`
 ### 	d. wait for bundling process
 ## 8. App will load a login screen.
 ---
