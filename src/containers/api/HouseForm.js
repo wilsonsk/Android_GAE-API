@@ -17,11 +17,12 @@ class HouseForm extends Component<{}>{
 
 	handleSubmitPost(key, userId, address, headline, squareFeet, price){
 		if(!key){
-			var getUrl = 'https://android-endpoint.appspot.com/home';
 			if(!userId){
 				alert("UserId error");
 				return null;
 			}
+			var getUrl = 'https://android-endpoint.appspot.com/home/' + userId;
+		}else{
 			if(!address){
 				alert("Address error");
 				return null;
@@ -38,8 +39,6 @@ class HouseForm extends Component<{}>{
 				alert("Price error " + typeof price);
 				return null;
 			}
-		}else if(!userId && !address && !headline && !squareFeet && !price) {
-			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
 		}
 		this.setState({
 			isLoading: true
@@ -54,7 +53,6 @@ class HouseForm extends Component<{}>{
 			},
 			body: JSON.stringify({
 				homeId: Math.random().toString(36).substr(2, 9),
-				userId: userId,
 				address: address,
 				headline: headline,
 				squareFeet: squareFeet,
@@ -82,7 +80,7 @@ class HouseForm extends Component<{}>{
 			}
 			return null;
 		}else {
-			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key;
+			var getUrl = 'https://android-endpoint.appspot.com/home/' + userId + '/' + key;
 		}
 		this.setState({
 			isLoading: true
@@ -121,9 +119,9 @@ class HouseForm extends Component<{}>{
 				alert("UserId error");
 				return null;
 			}
-			var getUrl = 'https://android-endpoint.appspot.com/home?userId=' + userId;
+			var getUrl = 'https://android-endpoint.appspot.com/home/' + userId;
 		}else {
-			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key + '&userId=' + userId;
+			var getUrl = 'https://android-endpoint.appspot.com/home/' + userId + '/' + key;
 			this.setState({
 				isLoading: true
 			});
@@ -159,7 +157,7 @@ class HouseForm extends Component<{}>{
 			}
 			return null;
 		}else {
-			var getUrl = 'https://android-endpoint.appspot.com/home?homeId=' + key + '&userId=' + userId;
+			var getUrl = 'https://android-endpoint.appspot.com/home/' + userId + '/' + key;
 			this.setState({
 				isLoading: true
 			});

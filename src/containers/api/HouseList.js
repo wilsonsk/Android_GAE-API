@@ -20,7 +20,7 @@ class HouseList extends Component<{}>{
 	}
 
 	_getCB(){
-		urlToFetch = 'https://android-endpoint.appspot.com/home?userId=' + this.state.userId;
+		urlToFetch = 'https://android-endpoint.appspot.com/home/' + this.state.userId;
 		return fetch( urlToFetch, {
 			method: 'GET',
 			dataType: 'json',
@@ -31,6 +31,7 @@ class HouseList extends Component<{}>{
 		})
 			.then((response) => response.json())
 			.then((responseJson) => {
+				alert(JSON.stringify(responseJson));
 				res = JSON.parse(responseJson);
 				homes = res.Homes;
 				this.setState({
