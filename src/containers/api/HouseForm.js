@@ -105,6 +105,7 @@ class HouseForm extends Component<{}>{
 		})
 			.then((res) => res.json())
 			.then((responseJson) => {
+				alert(JSON.stringify(responseJson));
 				this.setState({
 					isLoading: false
 				});
@@ -138,6 +139,7 @@ class HouseForm extends Component<{}>{
 			.then((res) => res.json())
 			.then((responseJson) => {
 				this.props.onPress(responseJson);
+				alert(JSON.stringify(responseJson));
 				this.setState({
 					isLoading: false,
 				});
@@ -172,6 +174,7 @@ class HouseForm extends Component<{}>{
 			})
 				.then((res) => res.json())
 				.then((responseJson) => {
+					alert(JSON.stringify(responseJson));
 					this.setState({
 							isLoading: false
 					});
