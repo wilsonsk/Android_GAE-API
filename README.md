@@ -56,7 +56,7 @@ To run this project, you will need Node, the React Native command line interface
 ## 6. Open the Command Prompt as Administrator
 ## 7. Clone into `ReactNativeGAE_UI` repository
 ###### `git clone https://github.com/wilsonsk/ReactNativeGAE_UI.git`
-### 	a. enter the `ReactNativeGAE_RestApi` directory
+### 	a. enter the `ReactNativeGAE_UI` directory
 ### 	b. enter the command, 
 ###### `npm install`
 ### 	c. enter the command, 
