@@ -28,6 +28,7 @@ class Auth extends Component <{}> {
 		})
 		firebase.auth().signInWithEmailAndPassword(email, password)
 			.then((user) => {
+				alert("Welcome back, " + user.email);
 				this.setState({
 					isLoading: false
 				});

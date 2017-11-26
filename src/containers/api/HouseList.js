@@ -31,7 +31,6 @@ class HouseList extends Component<{}>{
 		})
 			.then((response) => response.json())
 			.then((responseJson) => {
-				alert(JSON.stringify(responseJson));
 				res = JSON.parse(responseJson);
 				homes = res.Homes;
 				this.setState({

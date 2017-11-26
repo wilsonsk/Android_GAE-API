@@ -47,7 +47,7 @@ class HouseDetail extends Component<{}> {
 								<CardSection>
 									<View style={styles.containerStyle}>
 										<Text>
-											Square Feet: {JSON.stringify(item.squareFeet)}sq ft.
+											Square Feet: {JSON.stringify(item.squareFeet)} sqft.
 										</Text>
 									</View>
 									<View style={styles.containerStyle}>
