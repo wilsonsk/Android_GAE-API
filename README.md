@@ -5,10 +5,6 @@
 #### Target OS: Android
 ---
 
-
-
-# How to Run Locally on an Android Studio Emulator
-
 ---
 ## Dependencies:
 To run this project, you will need Node, the React Native command line interface, Python2, a JDK, and Android Studio
@@ -41,3 +37,17 @@ To run this project, you will need Node, the React Native command line interface
 ##### `Android Virtual Device`
 ---
 
+---
+# How to Run Locally on an Android Studio Emulator
+## 1. Open Android Studio
+## 2. Click `tools -> Android -> AVD Manager`
+## 3. Click `Create Virtual Device`
+### - Select `x86 Images` tab, then select `Marshmellow API Level 23, x86_64 ABI image with Android 6.0 (Google APIs) target`
+## 4. Click the triangle ('play') button to start the Android emulator
+## 5. Wait for the Android home screen to load
+## 6. Open the Command Prompt as Administrator
+### a. enter the `ReactNativeGAE_RestApi` directory
+### b. enter the command, `react-native run-android`
+### c. wait for bundling process
+## 7. App will load a login screen.
+---
