@@ -21,6 +21,17 @@ To run this project, you will need Node, the React Native command line interface
 
 ---
 ## 2. Node, Python2, JDK:
-#### 
+#### In the current Command Prompt, `run choco install -y nodejs.install python2 jdk8`
+---
+
+---
+## 3. React Native Command Line Interface (CLI)
+#### In the current Command Prompt, `npm install -g react-native-cli`
+###### If you get an error, `Cannot find module 'npmlog'`, try installing npm directly: `curl -0 -L https://npmjs.org/install.sh | sudo sh`.
+---
+
+---
+## 4. Install Android Studio
+#### [https://developer.android.com/studio/index.html]
 ---
 
