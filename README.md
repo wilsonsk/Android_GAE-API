@@ -14,7 +14,7 @@ To run this project, you will need Node, the React Native command line interface
 ## 1. Open an Command Prompt as Administrator:
 #### Right click Command Prompt, then select 
 ###### `Run as Administrator`. 
-####The following commands will be entered in this Command Prompt.
+#### The following commands will be entered in this Command Prompt.
 ---
 
 ---
