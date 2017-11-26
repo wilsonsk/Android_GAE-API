@@ -35,9 +35,9 @@ To run this project, you will need Node, the React Native command line interface
 ###### [install Android Studio](https://developer.android.com/studio/index.html)
 ## Choose `Custom` setup as installation type. 
 ## The following component's must be selected:
-#####`Android SDK`
-#####`Android SDK Platform`
-#####`Performance (Intel HAXM)`
-#####`Android Virtual Device`
+##### `Android SDK`
+##### `Android SDK Platform`
+##### `Performance (Intel HAXM)`
+##### `Android Virtual Device`
 ---
 
